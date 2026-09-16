@@ -1,0 +1,1166 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&amp;family=Tajawal:wght@400;500;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --gold:#B8902E; --gold-dark:#8F6F22; --gold-light:#E4C77A; --gold-tint:#FBF3DE;
+      --teal:#0F8F86; --teal-dark:#0B6B64; --teal-light:#6FC7C0; --teal-tint:#EAF6F5;
+      --ink:#1B160E; --ink-soft:#5B5645; --ink-faint:#948E78;
+      --paper:#FFFFFF; --paper-warm:#FBF8F2; --line:#E7DFC9;
+      --shadow:0 4px 18px rgba(34,29,20,.07); --shadow-md:0 14px 38px rgba(34,29,20,.14); --shadow-lg:0 28px 60px -18px rgba(20,17,10,.35);
+    }
+    *{box-sizing:border-box;}
+    body{margin:0; font-family:'Tajawal',system-ui,sans-serif; color:var(--ink); background:var(--paper);}
+    h1,h2,h3,h4{font-family:'Cairo',system-ui,sans-serif; margin:0;}
+    a{color:var(--teal-dark); text-decoration:none;}
+    a:hover{color:var(--gold-dark);}
+    img{display:block; max-width:100%;}
+    .wrap{max-width:1440px; margin:0 auto;}
+    .kicker{display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:800; padding:6px 14px; border-radius:3px; }
+    .card-title{font-family:'Cairo',system-ui,sans-serif; font-weight:700; line-height:1.55;}
+    .meta{font-size:13.5px; color:var(--ink-faint); display:flex; align-items:center; gap:14px;}
+    .sec-head{display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:26px; padding-bottom:16px; border-bottom:1px solid var(--line);}
+    .sec-head h2{font-size:27px; font-weight:800; display:flex; align-items:center; gap:12px;}
+    .sec-head h2::before{content:""; width:6px; height:24px; border-radius:3px; background:linear-gradient(180deg,var(--gold),var(--teal)); display:inline-block; flex-shrink:0;}
+    .sec-head.on-dark{border-bottom-color:rgba(255,255,255,.14);}
+    .sec-head.on-dark h2{color:#fff;}
+    .more-link{display:flex; align-items:center; gap:4px; font-size:15px; font-weight:700; color:var(--teal-dark); flex-shrink:0; padding-bottom:18px;}
+    .btn-gold{display:inline-flex; align-items:center; justify-content:center; gap:8px; background:var(--gold); color:#fff; padding:12px 22px; border-radius:7px; font-family:'Cairo',system-ui,sans-serif; font-weight:700; font-size:15px; box-shadow:0 10px 22px -8px rgba(184,144,46,.55);}
+    .btn-gold:hover{color:#fff; background:var(--gold-dark);}
+    .photo{position:relative; background-size:cover; background-position:center; overflow:hidden;}
+    .num-badge{display:flex; align-items:center; justify-content:center; flex-shrink:0; font-family:'Cairo',sans-serif; font-weight:800; color:var(--gold-dark); background:var(--gold-tint); border-radius:50%;}
+    .pill{display:flex; align-items:center; gap:8px; background:#fff; border:1px solid var(--line); padding:9px 18px; border-radius:24px; font-size:14.5px; font-weight:700; box-shadow:0 2px 8px rgba(34,29,20,.04); white-space:nowrap; flex-shrink:0;}
+    .pill-ic{display:flex; align-items:center; justify-content:center; width:22px; height:22px; border-radius:50%; color:#fff; flex-shrink:0;}
+    .avatar-ring{width:84px; height:84px; border-radius:50%; padding:3px; background:conic-gradient(from -45deg, var(--gold), var(--teal), var(--gold-light), var(--gold)); margin:0 auto 16px;}
+    .avatar-ring .photo{width:100%; height:100%; border-radius:50%; border:3px solid #fff;}
+    .author-card{text-align:center; background:#fff; border:1px solid var(--line); border-top:4px solid var(--gold); border-radius:14px; padding:0 14px 22px; box-shadow:var(--shadow);}
+    .scrollbar-none{scrollbar-width:none;}
+    .scrollbar-none::-webkit-scrollbar{display:none;}
+    .star-motif{position:absolute; opacity:.08; pointer-events:none;}
+    @keyframes magScrollX{0%{transform:translateX(0);}100%{transform:translateX(-1220px);}}
+    .mag-track{animation:magScrollX 30s linear infinite; width:2416px;}
+    .mag-strip:hover .mag-track{animation-play-state:paused;}
+    @keyframes heroSlide{0%,27%{transform:translateX(0);}33%,60%{transform:translateX(-800px);}66%,93%{transform:translateX(-1600px);}99.9%{transform:translateX(-1600px);}100%{transform:translateX(0);}}
+    .hero-track{animation:heroSlide 15s ease-in-out infinite; width:2400px;}
+    .hero-carousel:hover .hero-track{animation-play-state:paused;}
+  </style>
+</helmet>
+
+<div style="width:100%; background:var(--paper); direction:rtl;">
+
+  <!-- ===== BRAND RIBBON ===== -->
+  <div style="height:5px; background:linear-gradient(90deg, var(--gold-dark) 0%, var(--gold) 20%, var(--gold-light) 45%, var(--teal-light) 55%, var(--teal) 80%, var(--teal-dark) 100%);"></div>
+
+  <!-- ===== TOP UTILITY BAR ===== -->
+  <div style="background:var(--teal-dark); color:#EDE7D6; height:40px; font-size:14px;">
+   <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; height:100%; padding:0 40px;">
+    <div style="display:flex; align-items:center; gap:18px;">
+      <span style="opacity:.85;">الثلاثاء ٢٩ ربيع الآخر ١٤٤٨هـ</span>
+    </div>
+    <div style="display:flex; align-items:center; gap:16px;">
+      <span style="opacity:.85;">تابعنا:</span>
+      <a href="#" style="color:#EDE7D6; display:flex;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8.2h2.7l.4-3.3h-3.1V7.4c0-.95.26-1.6 1.62-1.6h1.73V2.86C15.9 2.75 14.87 2.7 13.66 2.7c-2.53 0-4.26 1.55-4.26 4.4v2.4H6.7v3.3h2.7V21h4.1z"></path></svg>
+      </a>
+      <a href="#" style="color:#EDE7D6; display:flex;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4l7.5 8.6L4.4 20H7l6-6.7 4.6 6.7H21l-8-9.1L20 4h-2.6l-5.4 6-4.2-6H4z"></path></svg>
+      </a>
+      <a href="#" style="color:#EDE7D6; display:flex;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21.5 5.5L2.7 12.9c-1 .4-1 1.9.1 2.2l4.6 1.4 1.7 5.2c.3.9 1.5 1.1 2.1.3l2.6-3.2 4.7 3.5c.8.6 1.9.1 2.1-.8l2.9-14.4c.2-1-.8-1.8-1.7-1.4zM8.7 16l-1.2-3.7 9.3-6.9-8.1 8.4z"></path></svg>
+      </a>
+      <span style="opacity:.5;">|</span>
+      <a href="#" style="color:#EDE7D6;">راسلنا</a>
+    </div>
+   </div>
+  </div>
+
+  <!-- ===== MAIN HEADER ===== -->
+  <div style="border-bottom:1px solid var(--line); background:#fff; box-shadow:0 14px 30px -26px rgba(20,17,10,.4);">
+   <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; padding:20px 40px;">
+    <div style="display:flex; align-items:center; gap:14px;">
+      <img src="logo.png" alt="إشراقات" style="height:58px; width:auto;">
+    </div>
+    <nav style="display:flex; align-items:center; gap:30px; font-family:'Cairo',system-ui,sans-serif; font-weight:700; font-size:16px;">
+      <a href="#" style="color:var(--teal-dark); border-bottom:2px solid var(--gold);padding-bottom:6px;">الرئيسية</a>
+      <a href="#" style="color:var(--ink);">في رحاب الشريعة</a>
+      <a href="#" style="color:var(--ink);">فتاوى</a>
+      <a href="#" style="color:var(--ink);">حوارات</a>
+      <a href="#" style="color:var(--ink);">تحقيقات</a>
+      <a href="#" style="color:var(--ink);">آراء وقضايا</a>
+      <a href="#" style="color:var(--ink);">أدبيات</a>
+    </nav>
+    <div style="display:flex; align-items:center; gap:16px;">
+      <button style="display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; border:1px solid var(--line); background:var(--paper-warm); cursor:pointer;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"></circle><line x1="15.3" y1="15.3" x2="20.5" y2="20.5"></line></svg>
+      </button>
+      <a href="#" class="btn-gold" style="background:var(--teal); box-shadow:0 10px 22px -8px rgba(15,143,134,.5);">اشترك بالنشرة</a>
+    </div>
+   </div>
+  </div>
+
+  <!-- ===== SELECTED ARTICLES TICKER ===== -->
+  <div style="background:var(--teal-tint); border-bottom:1px solid var(--line);">
+   <div class="wrap" style="display:flex; align-items:center; gap:18px; padding:11px 40px;">
+      <span style="flex-shrink:0; display:flex; align-items:center; gap:7px; background:var(--teal-dark); color:#fff; padding:6px 16px 6px 20px; font-size:13px; font-weight:800; clip-path:polygon(0 0,100% 0,92% 100%,0% 100%);">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="#fff"><path d="M12 2l2.9 6.3 6.9.6-5.2 4.6 1.6 6.8L12 16.9l-6.2 3.4 1.6-6.8L2.2 8.9l6.9-.6z"></path></svg>
+        مقالات مختارة
+      </span>
+      <div style="display:flex; align-items:center; gap:22px; font-size:14.5px; font-weight:700; color:var(--ink); overflow:hidden; white-space:nowrap;">
+        <a href="#" style="color:var(--ink);">الإنسان كما يريده القرآن: بين الغايات الكبرى وتفاصيل الحياة اليومية</a>
+        <span style="color:var(--gold-light); font-weight:400;">◆</span>
+        <a href="#" style="color:var(--ink);">حوار خاص مع د. هناء جادو حول تربية الأبناء على التوحيد</a>
+        <span style="color:var(--gold-light); font-weight:400;">◆</span>
+        <a href="#" style="color:var(--ink);">فتوى جديدة: حكم الجمع بين الصلاتين في السفر الطويل جوًا</a>
+      </div>
+   </div>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <div class="wrap" style="padding:40px 40px 40px;">
+    <div style="display:grid; grid-template-columns:800px 536px; gap:24px;">
+
+      <div class="hero-carousel" style="position:relative; width:800px; min-width:0; border-radius:20px; overflow:hidden; height:460px; box-shadow:var(--shadow-lg);">
+        <div class="hero-track" style="display:flex;">
+
+          <div class="photo" style="flex-shrink:0; width:800px; height:460px; background-image:url('quran-human.jpg');">
+            <div style="position:absolute; inset:0; background:linear-gradient(0deg, rgba(10,8,4,.88) 0%, rgba(10,8,4,.15) 55%, transparent 75%);"></div>
+            <div style="position:absolute; bottom:0; right:0; left:0; padding:32px 32px 40px;">
+              <span class="kicker" style="background:var(--gold); color:#fff; margin-bottom:16px;">في رحاب الشريعة</span>
+              <h2 style="color:#fff; font-size:25px; line-height:1.55; margin-bottom:12px; max-width:640px;">الإنسان كما يريده القرآن: بين الغايات الكبرى وتفاصيل الحياة اليومية</h2>
+              <div class="meta" style="color:#EDE7D6;">
+                <span style="display:flex; align-items:center; gap:5px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 9h18M8 3v4M16 3v4"></path></svg>٣ سبتمبر</span>
+                <span style="display:flex; align-items:center; gap:5px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3.2 2"></path></svg>٦ دقائق</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="photo" style="flex-shrink:0; width:800px; height:460px; background-image:url('sharia-reason.jpg');">
+            <div style="position:absolute; inset:0; background:linear-gradient(0deg, rgba(10,8,4,.88) 0%, rgba(10,8,4,.15) 55%, transparent 75%);"></div>
+            <div style="position:absolute; bottom:0; right:0; left:0; padding:32px 32px 40px;">
+              <span class="kicker" style="background:var(--teal); color:#fff; margin-bottom:16px;">آراء وقضايا</span>
+              <h2 style="color:#fff; font-size:25px; line-height:1.55; margin-bottom:12px; max-width:640px;">تشريح العلمانية.. قراءة نقدية في الجزء الثالث</h2>
+              <div class="meta" style="color:#EDE7D6;">
+                <span style="display:flex; align-items:center; gap:5px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 9h18M8 3v4M16 3v4"></path></svg>٥ سبتمبر</span>
+                <span style="display:flex; align-items:center; gap:5px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3.2 2"></path></svg>٨ دقائق</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="photo" style="flex-shrink:0; width:800px; height:460px; background-image:url('history-ottoman.jpg');">
+            <div style="position:absolute; inset:0; background:linear-gradient(0deg, rgba(10,8,4,.88) 0%, rgba(10,8,4,.15) 55%, transparent 75%);"></div>
+            <div style="position:absolute; bottom:0; right:0; left:0; padding:32px 32px 40px;">
+              <span class="kicker" style="background:var(--gold); color:#fff; margin-bottom:16px;">أدبيات</span>
+              <h2 style="color:#fff; font-size:25px; line-height:1.55; margin-bottom:12px; max-width:640px;">من غار ثور إلى أسوار القسطنطينية.. قراءة في مآلات المشروع</h2>
+              <div class="meta" style="color:#EDE7D6;">
+                <span style="display:flex; align-items:center; gap:5px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 9h18M8 3v4M16 3v4"></path></svg>٢٦ أغسطس</span>
+                <span style="display:flex; align-items:center; gap:5px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3.2 2"></path></svg>٧ دقائق</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div style="position:absolute; z-index:2; bottom:18px; right:0; left:0; display:flex; align-items:center; justify-content:center; gap:9px;">
+          <span style="width:22px; height:4px; border-radius:2px; background:var(--gold);"></span>
+          <span style="width:8px; height:4px; border-radius:2px; background:rgba(255,255,255,.55);"></span>
+          <span style="width:8px; height:4px; border-radius:2px; background:rgba(255,255,255,.55);"></span>
+        </div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:14px; height:460px; box-sizing:border-box;">
+
+        <div style="text-align:center;">
+          <div style="font-family:'Cairo',sans-serif; font-weight:900; font-size:36px; line-height:1.25; letter-spacing:.5px; background:linear-gradient(90deg,var(--gold-dark) 0%, var(--gold) 45%, var(--teal-dark) 100%); -webkit-background-clip:text; background-clip:text; color:transparent;">مجلة المسلم المثقف</div>
+          <div style="width:60px; height:3px; background:linear-gradient(90deg,var(--gold),var(--teal)); margin:8px auto 0; border-radius:2px;"></div>
+        </div>
+
+        <div style="position:relative; flex:1; background:linear-gradient(150deg,var(--teal-dark) 0%, var(--teal) 55%, var(--gold-dark) 140%); border-radius:16px; padding:20px 24px 10px; color:#fff; box-shadow:var(--shadow); overflow:hidden; display:flex; flex-direction:column;">
+          <svg class="star-motif" viewBox="0 0 100 100" style="width:170px; height:170px; bottom:-46px; left:-46px; color:#fff;"><polygon points="50,2 57.7,31.5 83.9,16.1 68.5,42.3 98,50 68.5,57.7 83.9,83.9 57.7,68.5 50,98 42.3,68.5 16.1,83.9 31.5,57.7 2,50 31.5,42.3 16.1,16.1 42.3,31.5" fill="none" stroke="currentColor" stroke-width="1.5"></polygon></svg>
+          <div style="position:relative; display:flex; align-items:center; justify-content:space-between; padding-bottom:12px; margin-bottom:6px; border-bottom:1px solid rgba(255,255,255,.2);">
+            <div style="display:flex; align-items:center; gap:8px;">
+              <span style="width:7px; height:7px; border-radius:50%; background:var(--gold-light); box-shadow:0 0 0 3px rgba(228,199,122,.25);"></span>
+              <span style="font-family:'Cairo',sans-serif; font-weight:800; font-size:14px;">الأكثر تداولًا الآن</span>
+            </div>
+            <span style="display:flex; align-items:center; gap:5px; font-size:11.5px; color:var(--gold-light); font-weight:700;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+              مباشر
+            </span>
+          </div>
+          <a href="#" style="position:relative; display:flex; align-items:center; gap:12px; padding:10px 0; border-bottom:1px solid rgba(255,255,255,.14);">
+            <span class="num-badge" style="width:28px; height:28px; font-size:12px;">٠١</span>
+            <span class="card-title" style="font-size:13.5px; color:#fff; line-height:1.4; flex:1;">حكم الجمع بين الصلاتين في السفر الطويل</span>
+          </a>
+          <a href="#" style="position:relative; display:flex; align-items:center; gap:12px; padding:10px 0; border-bottom:1px solid rgba(255,255,255,.14);">
+            <span class="num-badge" style="width:28px; height:28px; font-size:12px;">٠٢</span>
+            <span class="card-title" style="font-size:13.5px; color:#fff; line-height:1.4; flex:1;">حوار مع الدكتورة هناء جادو حول تربية الأبناء</span>
+          </a>
+          <a href="#" style="position:relative; display:flex; align-items:center; gap:12px; padding:10px 0; border-bottom:1px solid rgba(255,255,255,.14);">
+            <span class="num-badge" style="width:28px; height:28px; font-size:12px;">٠٣</span>
+            <span class="card-title" style="font-size:13.5px; color:#fff; line-height:1.4; flex:1;">قراءة في احتياجات طرابلس.. هل انزلقت نحو التطرف؟</span>
+          </a>
+          <a href="#" style="position:relative; display:flex; align-items:center; gap:12px; padding:10px 0;">
+            <span class="num-badge" style="width:28px; height:28px; font-size:12px;">٠٤</span>
+            <span class="card-title" style="font-size:13.5px; color:#fff; line-height:1.4; flex:1;">نظرات وتأملات بين الغائيات والبقيات.. الجزء السابع عشر</span>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="mag-strip" style="margin-top:26px; background:var(--paper-warm); border:1px solid var(--line); border-radius:16px; padding:22px 0 22px 22px; overflow:hidden;">
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; padding-right:22px;">
+        <span class="card-title" style="font-size:17px; display:flex; align-items:center; gap:10px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gold-dark)" stroke-width="1.8"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v15l-8-4-8 4z"></path></svg>
+          المجلة الإلكترونية — أعداد سابقة
+        </span>
+        <a href="#" class="more-link" style="padding-bottom:0;">كل الأعداد
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"></path></svg>
+        </a>
+      </div>
+      <div style="overflow:hidden; min-width:0; width:100%;">
+        <div class="mag-track" style="display:flex; gap:24px;">
+
+          <a href="#" style="flex-shrink:0; width:220px;">
+            <div class="photo" style="position:relative; width:220px; height:300px; border-radius:12px; box-shadow:var(--shadow-md); background-image:url('quran-human.jpg');">
+              <div style="position:absolute; inset:0; background:linear-gradient(0deg, rgba(10,8,4,.85) 0%, rgba(10,8,4,.15) 45%, transparent 65%);"></div>
+              <div style="position:absolute; top:16px; right:0; left:0; display:flex; flex-direction:column; align-items:center;">
+                <img src="logo.png" style="height:26px; width:auto; filter:brightness(0) invert(1); opacity:.95;">
+              </div>
+              <div style="position:absolute; bottom:0; right:0; left:0; padding:18px 18px 16px;">
+                <div style="color:var(--gold-light); font-family:'Cairo',sans-serif; font-weight:800; font-size:14px; margin-bottom:4px;">العدد ٢٣٥ — سبتمبر ٢٠٢٦م</div>
+                <div style="color:#fff; font-size:15px; font-weight:700; line-height:1.4;">الإنسان كما يريده القرآن</div>
+              </div>
+            </div>
+          </a>
+          <a href="#" style="flex-shrink:0; width:220px;">
+            <div class="photo" style="position:relative; width:220px; height:300px; border-radius:12px; box-shadow:var(--shadow-md); background-image:url('sharia-reason.jpg');">
+              <div style="position:absolute; inset:0; background:linear-gradient(0deg, rgba(10,8,4,.85) 0%, rgba(10,8,4,.15) 45%, transparent 65%);"></div>
+              <div style="position:absolute; top:16px; right:0; left:0; display:flex; flex-direction:column; align-items:center;">
+                <img src="logo.png" style="height:26px; width:auto; filter:brightness(0) invert(1); opacity:.95;">
+              </div>
+              <div style="position:absolute; bottom:0; right:0; left:0; padding:18px 18px 16px;">
+                <div style="color:var(--gold-light); font-family:'Cairo',sans-serif; font-weight:800; font-size:14px; margin-bottom:4px;">العدد ٢٣٤ — أغسطس ٢٠٢٦م</div>
+                <div style="color:#fff; font-size:15px; font-weight:700; line-height:1.4;">تشريح العلمانية</div>
+              </div>
+            </div>
+          </a>
+          <a href="#" style="flex-shrink:0; width:220px;">
+            <div class="photo" style="position:relative; width:220px; height:300px; border-radius:12px; box-shadow:var(--shadow-md); background-image:url('history-ottoman.jpg');">
+              <div style="position:absolute; inset:0; background:linear-gradient(0deg, rgba(10,8,4,.85) 0%, rgba(10,8,4,.15) 45%, transparent 65%);"></div>
+              <div style="position:absolute; top:16px; right:0; left:0; display:flex; flex-direction:column; align-items:center;">
+                <img src="logo.png" style="height:26px; width:auto; filter:brightness(0) invert(1); opacity:.95;">
+              </div>
+              <div style="position:absolute; bottom:0; right:0; left:0; padding:18px 18px 16px;">
+                <div style="color:var(--gold-light); font-family:'Cairo',sans-serif; font-weight:800; font-size:14px; margin-bottom:4px;">العدد ٢٣٣ — يوليو ٢٠٢٦م</div>
+                <div style="color:#fff; font-size:15px; font-weight:700; line-height:1.4;">نظرات وتأملات</div>
+              </div>
+            </div>
+          </a>
+          <a href="#" style="flex-shrink:0; width:220px;">
+            <div class="photo" style="position:relative; width:220px; height:300px; border-radius:12px; box-shadow:var(--shadow-md); background-image:url('investigation-city.jpg');">
+              <div style="position:absolute; inset:0; background:linear-gradient(0deg, rgba(10,8,4,.85) 0%, rgba(10,8,4,.15) 45%, transparent 65%);"></div>
+              <div style="position:absolute; top:16px; right:0; left:0; display:flex; flex-direction:column; align-items:center;">
+                <img src="logo.png" style="height:26px; width:auto; filter:brightness(0) invert(1); opacity:.95;">
+              </div>
+              <div style="position:absolute; bottom:0; right:0; left:0; padding:18px 18px 16px;">
+                <div style="color:var(--gold-light); font-family:'Cairo',sans-serif; font-weight:800; font-size:14px; margin-bottom:4px;">العدد ٢٣٢ — يونيو ٢٠٢٦م</div>
+                <div style="color:#fff; font-size:15px; font-weight:700; line-height:1.4;">قراءة في احتياجات المجتمع</div>
+              </div>
+            </div>
+          </a>
+          <a href="#" style="flex-shrink:0; width:220px;">
+            <div class="photo" style="position:relative; width:220px; height:300px; border-radius:12px; box-shadow:var(--shadow-md); background-image:url('dialogue-portrait.jpg');">
+              <div style="position:absolute; inset:0; background:linear-gradient(0deg, rgba(10,8,4,.85) 0%, rgba(10,8,4,.15) 45%, transparent 65%);"></div>
+              <div style="position:absolute; top:16px; right:0; left:0; display:flex; flex-direction:column; align-items:center;">
+                <img src="logo.png" style="height:26px; width:auto; filter:brightness(0) invert(1); opacity:.95;">
+              </div>
+              <div style="position:absolute; bottom:0; right:0; left:0; padding:18px 18px 16px;">
+                <div style="color:var(--gold-light); font-family:'Cairo',sans-serif; font-weight:800; font-size:14px; margin-bottom:4px;">العدد ٢٣١ — مايو ٢٠٢٦م</div>
+                <div style="color:#fff; font-size:15px; font-weight:700; line-height:1.4;">حوار مع د. هناء جادو</div>
+              </div>
+            </div>
+          </a>
+          <a href="#" style="flex-shrink:0; width:220px;">
+            <div class="photo" style="position:relative; width:220px; height:300px; border-radius:12px; box-shadow:var(--shadow-md); background-image:url('quran-human.jpg');">
+              <div style="position:absolute; inset:0; background:linear-gradient(0deg, rgba(10,8,4,.85) 0%, rgba(10,8,4,.15) 45%, transparent 65%);"></div>
+              <div style="position:absolute; top:16px; right:0; left:0; display:flex; flex-direction:column; align-items:center;">
+                <img src="logo.png" style="height:26px; width:auto; filter:brightness(0) invert(1); opacity:.95;">
+              </div>
+              <div style="position:absolute; bottom:0; right:0; left:0; padding:18px 18px 16px;">
+                <div style="color:var(--gold-light); font-family:'Cairo',sans-serif; font-weight:800; font-size:14px; margin-bottom:4px;">العدد ٢٣٥ — سبتمبر ٢٠٢٦م</div>
+                <div style="color:#fff; font-size:15px; font-weight:700; line-height:1.4;">الإنسان كما يريده القرآن</div>
+              </div>
+            </div>
+          </a>
+          <a href="#" style="flex-shrink:0; width:220px;">
+            <div class="photo" style="position:relative; width:220px; height:300px; border-radius:12px; box-shadow:var(--shadow-md); background-image:url('sharia-reason.jpg');">
+              <div style="position:absolute; inset:0; background:linear-gradient(0deg, rgba(10,8,4,.85) 0%, rgba(10,8,4,.15) 45%, transparent 65%);"></div>
+              <div style="position:absolute; top:16px; right:0; left:0; display:flex; flex-direction:column; align-items:center;">
+                <img src="logo.png" style="height:26px; width:auto; filter:brightness(0) invert(1); opacity:.95;">
+              </div>
+              <div style="position:absolute; bottom:0; right:0; left:0; padding:18px 18px 16px;">
+                <div style="color:var(--gold-light); font-family:'Cairo',sans-serif; font-weight:800; font-size:14px; margin-bottom:4px;">العدد ٢٣٤ — أغسطس ٢٠٢٦م</div>
+                <div style="color:#fff; font-size:15px; font-weight:700; line-height:1.4;">تشريح العلمانية</div>
+              </div>
+            </div>
+          </a>
+          <a href="#" style="flex-shrink:0; width:220px;">
+            <div class="photo" style="position:relative; width:220px; height:300px; border-radius:12px; box-shadow:var(--shadow-md); background-image:url('history-ottoman.jpg');">
+              <div style="position:absolute; inset:0; background:linear-gradient(0deg, rgba(10,8,4,.85) 0%, rgba(10,8,4,.15) 45%, transparent 65%);"></div>
+              <div style="position:absolute; top:16px; right:0; left:0; display:flex; flex-direction:column; align-items:center;">
+                <img src="logo.png" style="height:26px; width:auto; filter:brightness(0) invert(1); opacity:.95;">
+              </div>
+              <div style="position:absolute; bottom:0; right:0; left:0; padding:18px 18px 16px;">
+                <div style="color:var(--gold-light); font-family:'Cairo',sans-serif; font-weight:800; font-size:14px; margin-bottom:4px;">العدد ٢٣٣ — يوليو ٢٠٢٦م</div>
+                <div style="color:#fff; font-size:15px; font-weight:700; line-height:1.4;">نظرات وتأملات</div>
+              </div>
+            </div>
+          </a>
+          <a href="#" style="flex-shrink:0; width:220px;">
+            <div class="photo" style="position:relative; width:220px; height:300px; border-radius:12px; box-shadow:var(--shadow-md); background-image:url('investigation-city.jpg');">
+              <div style="position:absolute; inset:0; background:linear-gradient(0deg, rgba(10,8,4,.85) 0%, rgba(10,8,4,.15) 45%, transparent 65%);"></div>
+              <div style="position:absolute; top:16px; right:0; left:0; display:flex; flex-direction:column; align-items:center;">
+                <img src="logo.png" style="height:26px; width:auto; filter:brightness(0) invert(1); opacity:.95;">
+              </div>
+              <div style="position:absolute; bottom:0; right:0; left:0; padding:18px 18px 16px;">
+                <div style="color:var(--gold-light); font-family:'Cairo',sans-serif; font-weight:800; font-size:14px; margin-bottom:4px;">العدد ٢٣٢ — يونيو ٢٠٢٦م</div>
+                <div style="color:#fff; font-size:15px; font-weight:700; line-height:1.4;">قراءة في احتياجات المجتمع</div>
+              </div>
+            </div>
+          </a>
+          <a href="#" style="flex-shrink:0; width:220px;">
+            <div class="photo" style="position:relative; width:220px; height:300px; border-radius:12px; box-shadow:var(--shadow-md); background-image:url('dialogue-portrait.jpg');">
+              <div style="position:absolute; inset:0; background:linear-gradient(0deg, rgba(10,8,4,.85) 0%, rgba(10,8,4,.15) 45%, transparent 65%);"></div>
+              <div style="position:absolute; top:16px; right:0; left:0; display:flex; flex-direction:column; align-items:center;">
+                <img src="logo.png" style="height:26px; width:auto; filter:brightness(0) invert(1); opacity:.95;">
+              </div>
+              <div style="position:absolute; bottom:0; right:0; left:0; padding:18px 18px 16px;">
+                <div style="color:var(--gold-light); font-family:'Cairo',sans-serif; font-weight:800; font-size:14px; margin-bottom:4px;">العدد ٢٣١ — مايو ٢٠٢٦م</div>
+                <div style="color:#fff; font-size:15px; font-weight:700; line-height:1.4;">حوار مع د. هناء جادو</div>
+              </div>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== EDITOR'S WORD + MAGAZINE ISSUE ===== -->
+  <div class="wrap" style="padding:0 40px 40px; display:grid; grid-template-columns:2fr 1fr; gap:28px;">
+
+    <div style="position:relative; background:linear-gradient(135deg,var(--teal-dark) 0%, var(--teal) 60%, var(--gold-dark) 130%); color:#fff; border-radius:16px; padding:46px 48px; overflow:hidden;">
+      <span style="position:absolute; top:-10px; right:32px; font-size:150px; font-family:Georgia,'Times New Roman',serif; color:var(--gold-light); opacity:.16; line-height:1;">”</span>
+      <svg class="star-motif" viewBox="0 0 100 100" style="width:220px; height:220px; bottom:-60px; left:-50px; color:var(--teal-light);"><polygon points="50,2 57.7,31.5 83.9,16.1 68.5,42.3 98,50 68.5,57.7 83.9,83.9 57.7,68.5 50,98 42.3,68.5 16.1,83.9 31.5,57.7 2,50 31.5,42.3 16.1,16.1 42.3,31.5" fill="none" stroke="currentColor" stroke-width="1.5"></polygon></svg>
+      <div style="position:relative;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:22px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold-light)" stroke-width="1.8"><path d="M5 19l1.4-4.8L17.6 3 21 6.4 9.8 17.6 5 19z"></path><path d="M14.5 5.9 18.1 9.5"></path></svg>
+          <span style="font-family:'Cairo',sans-serif; font-weight:800; font-size:15px; color:var(--gold-light); ">كلمة أسرة التحرير</span>
+        </div>
+        <h2 style="font-size:26px; font-weight:800; line-height:1.6; margin-bottom:18px;">
+          <span style="font-size:1.7em; color:var(--gold-light);">ب</span>قيّة الصالحين.. رسالتنا في زمن الفتن
+        </h2>
+        <p style="font-size:16px; line-height:2; color:#D9D2BE; margin:0 0 26px; max-width:640px;">في خضم ما يعيشه المسلمون اليوم من تحديات فكرية وأخلاقية متسارعة، تبقى الكلمة الرصينة والمعرفة الأصيلة صمّام أمان يحفظ الهوية ويصون العقل. من هذا المنطلق، تجدد "إشراقات" عهدها بأن تكون منبرًا للفكر الوسطي الجامع، ينفتح على قضايا العصر دون أن يفرّط في ثوابته...</p>
+        <div style="display:flex; align-items:center; justify-content:space-between;">
+          <span style="font-size:14.5px; font-weight:700; color:var(--gold-light);">— أسرة تحرير مجلة إشراقات</span>
+          <a href="#" class="more-link" style="color:#fff; padding-bottom:0;">اقرأ الكلمة كاملة
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"></path></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div style="position:relative; background:var(--teal-dark); border-radius:16px; padding:30px 30px 26px; color:#fff; overflow:hidden;">
+      <svg class="star-motif" viewBox="0 0 100 100" style="width:160px; height:160px; bottom:-40px; left:-40px; color:#fff;"><polygon points="50,2 57.7,31.5 83.9,16.1 68.5,42.3 98,50 68.5,57.7 83.9,83.9 57.7,68.5 50,98 42.3,68.5 16.1,83.9 31.5,57.7 2,50 31.5,42.3 16.1,16.1 42.3,31.5" fill="none" stroke="currentColor" stroke-width="1.5"></polygon></svg>
+      <div style="position:relative;">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--gold-light)" stroke-width="1.6" style="margin-bottom:16px;"><path d="M17 3a5 5 0 0 1 0 9M7 3a5 5 0 0 0 0 9" stroke-linecap="round"></path><path d="M12 3v14"></path><circle cx="12" cy="19" r="2"></circle></svg>
+        <h3 style="font-size:19px; font-weight:800; margin-bottom:14px;">حدث في مثل هذا اليوم</h3>
+        <p style="font-size:14.5px; line-height:1.9; opacity:.92; margin:0 0 20px;">٣ ربيع الآخر ١٤٤٨هـ.. فتح القسطنطينية، حدث فارق غيّر مسار التاريخ الإسلامي وأثبت صدق البشارة النبوية.</p>
+        <a href="#" class="more-link" style="color:var(--gold-light); padding-bottom:0;">اقرأ القصة كاملة
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"></path></svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===== QUICK CATEGORY ROW ===== -->
+  <div style="background:var(--paper-warm); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+   <div class="wrap" style="padding:20px 40px; display:flex; align-items:center; gap:20px;">
+    <div style="display:flex; align-items:center; gap:14px; flex-shrink:0;">
+      <div style="display:flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:50%; background:var(--gold); box-shadow:0 4px 12px rgba(184,144,46,.35);">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M4 5h6a3 3 0 0 1 3 3v11a2.5 2.5 0 0 0-2.5-2.5H4z"></path><path d="M20 5h-6a3 3 0 0 0-3 3v11a2.5 2.5 0 0 1 2.5-2.5H20z"></path></svg>
+      </div>
+      <span style="font-family:'Cairo',system-ui,sans-serif; font-weight:800; font-size:16px; white-space:nowrap;">تصفح حسب القسم</span>
+    </div>
+    <div class="scrollbar-none" style="display:flex; align-items:center; gap:10px; overflow-x:auto;">
+      <a href="#" class="pill"><span class="pill-ic" style="background:var(--teal);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M4 5h6a3 3 0 0 1 3 3v11a2.5 2.5 0 0 0-2.5-2.5H4z"></path><path d="M20 5h-6a3 3 0 0 0-3 3v11a2.5 2.5 0 0 1 2.5-2.5H20z"></path></svg></span>في رحاب الشريعة</a>
+      <a href="#" class="pill"><span class="pill-ic" style="background:var(--gold);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M9 6h11M9 12h11M9 18h11"></path><circle cx="4.5" cy="6" r="1.4"></circle><circle cx="4.5" cy="12" r="1.4"></circle><circle cx="4.5" cy="18" r="1.4"></circle></svg></span>فتاوى</a>
+      <a href="#" class="pill"><span class="pill-ic" style="background:var(--teal);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8A2.5 2.5 0 0 1 17.5 16H10l-4.5 4v-4H6.5A2.5 2.5 0 0 1 4 13.5z"></path></svg></span>حوارات</a>
+      <a href="#" class="pill"><span class="pill-ic" style="background:var(--gold);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="10.5" cy="10.5" r="6.5"></circle><line x1="15.3" y1="15.3" x2="20.5" y2="20.5"></line></svg></span>تحقيقات</a>
+      <a href="#" class="pill"><span class="pill-ic" style="background:var(--teal);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="4.6"></circle><path d="M12 3v1.2M12 19.8V21M4.2 12H3M21 12h-1.2"></path></svg></span>آراء وقضايا</a>
+      <a href="#" class="pill"><span class="pill-ic" style="background:var(--gold);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M5 19l1.4-4.8L17.6 3 21 6.4 9.8 17.6 5 19z"></path></svg></span>أدبيات</a>
+      <a href="#" class="pill"><span class="pill-ic" style="background:var(--teal);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M4 11.5 12 4l8 7.5"></path><path d="M6 10v9h12v-9"></path></svg></span>لوحة الأسرة</a>
+      <a href="#" class="pill"><span class="pill-ic" style="background:var(--gold);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 21s-7.5-4.6-10-9.3C.5 8 2.3 4.5 5.8 4c2-.3 3.8.6 4.9 2.2"></path></svg></span>زينة الحياة</a>
+    </div>
+   </div>
+  </div>
+
+  <!-- ===== MOST READ (BENTO) ===== -->
+  <div class="wrap" style="padding:46px 40px 40px;">
+    <div class="sec-head">
+      <h2>الأكثر قراءة</h2>
+      <a href="#" class="more-link">عرض الكل
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"></path></svg>
+      </a>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(6,1fr); grid-auto-rows:88px; gap:20px;">
+
+      <a href="#" class="photo photo--gold" style="grid-column:1/4; grid-row:1/6; border-radius:14px; background-image:url('sharia-reason.jpg'); display:block;">
+      </a>
+      <div style="grid-column:1/4; grid-row:1/6; pointer-events:none; position:relative;">
+        <div style="position:absolute; inset:0; border-radius:14px; background:linear-gradient(0deg, rgba(15,12,6,.86) 0%, rgba(15,12,6,.05) 55%, transparent 75%);"></div>
+        <div style="position:absolute; bottom:0; right:0; left:0; padding:28px;">
+          <span class="kicker" style="background:var(--gold); color:#fff; margin-bottom:14px;">في رحاب الشريعة</span>
+          <h3 style="color:#fff; font-size:22px; font-weight:800; line-height:1.6; margin-bottom:12px; max-width:420px;">حين يلتقي العقل بالنقل: قراءة في منهجية الاستدلال الشرعي</h3>
+          <div class="meta" style="color:#EDE7D6;">
+            <span>٥ سبتمبر</span>
+            <span style="display:flex; align-items:center; gap:5px;">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+              ١٤٫٩ك
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <a href="#" class="photo photo--teal" style="grid-column:4/7; grid-row:1/3; border-radius:14px; background-image:url('history-ottoman.jpg'); display:block; position:relative;">
+        <div style="position:absolute; inset:0; background:linear-gradient(0deg, rgba(15,12,6,.82) 0%, transparent 70%); border-radius:14px;"></div>
+        <div style="position:absolute; bottom:0; right:0; left:0; padding:18px;">
+          <span style="color:var(--gold-light); font-size:12px; font-weight:800;">آراء وقضايا</span>
+          <h4 style="color:#fff; font-size:16px; margin-top:6px; line-height:1.5;">من غار ثور إلى أسوار القسطنطينية.. قراءة في مآلات المشروع</h4>
+        </div>
+      </a>
+
+      <a href="#" style="grid-column:4/7; grid-row:3/4; display:flex; align-items:center; gap:14px; border-bottom:1px solid var(--line); padding:0 4px;">
+        <span class="num-badge" style="width:40px; height:40px; font-size:15px;">٠٢</span>
+        <div style="min-width:0;">
+          <span style="font-size:12px; font-weight:700; color:var(--teal-dark);">أدبيات</span>
+          <div class="card-title" style="font-size:15px; line-height:1.4;">عالم الجيوبولتيك.. د. ظفر النجار ورحلة الإيمان في معارج القرآن</div>
+        </div>
+      </a>
+      <a href="#" style="grid-column:4/7; grid-row:4/5; display:flex; align-items:center; gap:14px; border-bottom:1px solid var(--line); padding:0 4px;">
+        <span class="num-badge" style="width:40px; height:40px; font-size:15px;">٠٣</span>
+        <div style="min-width:0;">
+          <span style="font-size:12px; font-weight:700; color:var(--gold-dark);">تحقيقات</span>
+          <div class="card-title" style="font-size:15px; line-height:1.4;">هل تفعل الرقمنة فعلها بهدوء في احتياجات المجتمعات المحلية؟</div>
+        </div>
+      </a>
+      <a href="#" style="grid-column:4/7; grid-row:5/6; display:flex; align-items:center; gap:14px; padding:0 4px;">
+        <span class="num-badge" style="width:40px; height:40px; font-size:15px;">٠٤</span>
+        <div style="min-width:0;">
+          <span style="font-size:12px; font-weight:700; color:var(--teal-dark);">في رحاب الشريعة</span>
+          <div class="card-title" style="font-size:15px; line-height:1.4;">نظرات وتأملات بين الغائيات والبقيات.. الجزء السابع عشر</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- ===== VIDEO SECTION ===== -->
+  <div style="background:linear-gradient(150deg,var(--teal-dark) 0%, var(--teal) 55%, var(--gold-dark) 140%); position:relative; overflow:hidden; clip-path:polygon(0 28px,100% 0,100% 100%,0 100%);">
+   <svg class="star-motif" viewBox="0 0 100 100" style="width:260px; height:260px; top:-70px; right:-40px; color:#fff;"><polygon points="50,2 57.7,31.5 83.9,16.1 68.5,42.3 98,50 68.5,57.7 83.9,83.9 57.7,68.5 50,98 42.3,68.5 16.1,83.9 31.5,57.7 2,50 31.5,42.3 16.1,16.1 42.3,31.5" fill="none" stroke="currentColor" stroke-width="1.5"></polygon></svg>
+   <div class="wrap" style="padding:70px 40px 50px; position:relative;">
+    <div class="sec-head on-dark" style="margin-bottom:28px;">
+      <h2>إشراقات مرئية</h2>
+      <a href="#" class="more-link" style="color:#fff;">مشاهدة الكل
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"></path></svg>
+      </a>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:20px;">
+
+      <div>
+        <a href="#" class="photo" style="position:relative; display:block; height:230px; border-radius:14px; background-image:url('video-quran.jpg'); margin-bottom:16px;">
+          <span style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center;">
+            <span style="width:50px; height:50px; border-radius:50%; background:rgba(255,255,255,.94); display:flex; align-items:center; justify-content:center; box-shadow:0 8px 20px rgba(0,0,0,.35);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--teal-dark)"><path d="M8 5.5v13l11-6.5z"></path></svg>
+            </span>
+          </span>
+        </a>
+        <div style="color:#fff; font-size:16px; font-weight:700; line-height:1.6;">الإنسان كما يريده القرآن.. الجزء السابع عشر</div>
+      </div>
+
+      <div>
+        <a href="#" class="photo" style="position:relative; display:block; height:230px; border-radius:14px; background-image:url('video-secularism.jpg'); margin-bottom:16px;">
+          <span style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center;">
+            <span style="width:50px; height:50px; border-radius:50%; background:rgba(255,255,255,.94); display:flex; align-items:center; justify-content:center; box-shadow:0 8px 20px rgba(0,0,0,.35);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--teal-dark)"><path d="M8 5.5v13l11-6.5z"></path></svg>
+            </span>
+          </span>
+        </a>
+        <div style="color:#fff; font-size:16px; font-weight:700; line-height:1.6;">تشريح العلمانية.. الجزء الثالث</div>
+      </div>
+
+      <div>
+        <a href="#" class="photo" style="position:relative; display:block; height:230px; border-radius:14px; background-image:url('history-ottoman.jpg'); margin-bottom:16px;">
+          <span style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center;">
+            <span style="width:50px; height:50px; border-radius:50%; background:rgba(255,255,255,.94); display:flex; align-items:center; justify-content:center; box-shadow:0 8px 20px rgba(0,0,0,.35);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--teal-dark)"><path d="M8 5.5v13l11-6.5z"></path></svg>
+            </span>
+          </span>
+        </a>
+        <div style="color:#fff; font-size:16px; font-weight:700; line-height:1.6;">من غار ثور إلى أسوار القسطنطينية</div>
+      </div>
+
+      <div>
+        <a href="#" class="photo" style="position:relative; display:block; height:230px; border-radius:14px; background-image:url('sharia-reason.jpg'); margin-bottom:16px;">
+          <span style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center;">
+            <span style="width:50px; height:50px; border-radius:50%; background:rgba(255,255,255,.94); display:flex; align-items:center; justify-content:center; box-shadow:0 8px 20px rgba(0,0,0,.35);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--teal-dark)"><path d="M8 5.5v13l11-6.5z"></path></svg>
+            </span>
+          </span>
+        </a>
+        <div style="color:#fff; font-size:16px; font-weight:700; line-height:1.6;">نظرات وتأملات: بين الغائيات والبقيات</div>
+      </div>
+
+    </div>
+   </div>
+  </div>
+
+  <!-- ===== AUTHORS ===== -->
+  <div class="wrap" style="padding:50px 40px 44px;">
+    <div class="sec-head">
+      <div>
+        <h2>كتّاب إشراقات</h2>
+        <p style="font-size:14.5px; color:var(--ink-soft); margin:10px 0 0; padding-right:18px;">نخبة من الكتّاب والباحثين الذين يثرون محتوى المجلة بخبراتهم</p>
+      </div>
+      <a href="#" class="more-link">عرض جميع الكتّاب
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"></path></svg>
+      </a>
+    </div>
+    <div class="scrollbar-none" style="display:flex; gap:18px; overflow-x:auto; padding-bottom:6px;">
+
+      <div class="author-card" style="flex:0 0 172px;">
+        <div class="avatar-ring" style="width:96px; height:96px; margin:22px auto 14px;"><div class="photo" style="background-image:url('avatar-8.jpg');"></div></div>
+        <div class="card-title" style="font-size:17px; margin-bottom:6px;">أ. نبيل منيمنة</div>
+        <div style="width:28px; height:2px; background:var(--gold); margin:0 auto 10px;"></div>
+        <div style="font-size:13px; color:var(--gold-dark); font-weight:700; letter-spacing:.3px; margin-bottom:14px;">كاتب وباحث شرعي</div>
+        <div style="display:flex; align-items:center; justify-content:center; gap:5px; font-size:14px; color:var(--teal-dark); font-weight:700;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 19l1.4-4.8L17.6 3 21 6.4 9.8 17.6 5 19z"></path></svg>
+          ٥٢ مقالاً
+        </div>
+      </div>
+
+      <div class="author-card" style="flex:0 0 172px;">
+        <div class="avatar-ring" style="width:96px; height:96px; margin:22px auto 14px;"><div class="photo" style="background-image:url('avatar-8.jpg');"></div></div>
+        <div class="card-title" style="font-size:17px; margin-bottom:6px;">د. هناء جادو</div>
+        <div style="width:28px; height:2px; background:var(--gold); margin:0 auto 10px;"></div>
+        <div style="font-size:13px; color:var(--gold-dark); font-weight:700; letter-spacing:.3px; margin-bottom:14px;">أستاذة تربية إسلامية</div>
+        <div style="display:flex; align-items:center; justify-content:center; gap:5px; font-size:14px; color:var(--teal-dark); font-weight:700;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 19l1.4-4.8L17.6 3 21 6.4 9.8 17.6 5 19z"></path></svg>
+          ٣٨ مقالاً
+        </div>
+      </div>
+
+      <div class="author-card" style="flex:0 0 172px;">
+        <div class="avatar-ring" style="width:96px; height:96px; margin:22px auto 14px;"><div class="photo" style="background-image:url('avatar-8.jpg');"></div></div>
+        <div class="card-title" style="font-size:17px; margin-bottom:6px;">أ. مازن المبارك</div>
+        <div style="width:28px; height:2px; background:var(--gold); margin:0 auto 10px;"></div>
+        <div style="font-size:13px; color:var(--gold-dark); font-weight:700; letter-spacing:.3px; margin-bottom:14px;">علّامة في اللغة والشريعة</div>
+        <div style="display:flex; align-items:center; justify-content:center; gap:5px; font-size:14px; color:var(--teal-dark); font-weight:700;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 19l1.4-4.8L17.6 3 21 6.4 9.8 17.6 5 19z"></path></svg>
+          ٦٧ مقالاً
+        </div>
+      </div>
+
+      <div class="author-card" style="flex:0 0 172px;">
+        <div class="avatar-ring" style="width:96px; height:96px; margin:22px auto 14px;"><div class="photo" style="background-image:url('avatar-8.jpg');"></div></div>
+        <div class="card-title" style="font-size:17px; margin-bottom:6px;">د. ظفر النجار</div>
+        <div style="width:28px; height:2px; background:var(--gold); margin:0 auto 10px;"></div>
+        <div style="font-size:13px; color:var(--gold-dark); font-weight:700; letter-spacing:.3px; margin-bottom:14px;">باحث في الفكر الإسلامي</div>
+        <div style="display:flex; align-items:center; justify-content:center; gap:5px; font-size:14px; color:var(--teal-dark); font-weight:700;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 19l1.4-4.8L17.6 3 21 6.4 9.8 17.6 5 19z"></path></svg>
+          ٢٩ مقالاً
+        </div>
+      </div>
+
+      <div class="author-card" style="flex:0 0 172px;">
+        <div class="avatar-ring" style="width:96px; height:96px; margin:22px auto 14px;"><div class="photo" style="background-image:url('avatar-8.jpg');"></div></div>
+        <div class="card-title" style="font-size:17px; margin-bottom:6px;">أ. سلمى الحلبي</div>
+        <div style="width:28px; height:2px; background:var(--gold); margin:0 auto 10px;"></div>
+        <div style="font-size:13px; color:var(--gold-dark); font-weight:700; letter-spacing:.3px; margin-bottom:14px;">كاتبة اجتماعية</div>
+        <div style="display:flex; align-items:center; justify-content:center; gap:5px; font-size:14px; color:var(--teal-dark); font-weight:700;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 19l1.4-4.8L17.6 3 21 6.4 9.8 17.6 5 19z"></path></svg>
+          ٤١ مقالاً
+        </div>
+      </div>
+
+      <div class="author-card" style="flex:0 0 172px;">
+        <div class="avatar-ring" style="width:96px; height:96px; margin:22px auto 14px;"><div class="photo" style="background-image:url('avatar-8.jpg');"></div></div>
+        <div class="card-title" style="font-size:17px; margin-bottom:6px;">د. طارق قباني</div>
+        <div style="width:28px; height:2px; background:var(--gold); margin:0 auto 10px;"></div>
+        <div style="font-size:13px; color:var(--gold-dark); font-weight:700; letter-spacing:.3px; margin-bottom:14px;">محلل سياسي</div>
+        <div style="display:flex; align-items:center; justify-content:center; gap:5px; font-size:14px; color:var(--teal-dark); font-weight:700;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 19l1.4-4.8L17.6 3 21 6.4 9.8 17.6 5 19z"></path></svg>
+          ٣٣ مقالاً
+        </div>
+      </div>
+
+      <div class="author-card" style="flex:0 0 172px;">
+        <div class="avatar-ring" style="width:96px; height:96px; margin:22px auto 14px;"><div class="photo" style="background-image:url('avatar-8.jpg');"></div></div>
+        <div class="card-title" style="font-size:17px; margin-bottom:6px;">أ. ريم عاصي</div>
+        <div style="width:28px; height:2px; background:var(--gold); margin:0 auto 10px;"></div>
+        <div style="font-size:13px; color:var(--gold-dark); font-weight:700; letter-spacing:.3px; margin-bottom:14px;">شاعرة وأديبة</div>
+        <div style="display:flex; align-items:center; justify-content:center; gap:5px; font-size:14px; color:var(--teal-dark); font-weight:700;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 19l1.4-4.8L17.6 3 21 6.4 9.8 17.6 5 19z"></path></svg>
+          ٢٤ مقالاً
+        </div>
+      </div>
+
+      <div class="author-card" style="flex:0 0 172px;">
+        <div class="avatar-ring" style="width:96px; height:96px; margin:22px auto 14px;"><div class="photo" style="background-image:url('avatar-8.jpg');"></div></div>
+        <div class="card-title" style="font-size:17px; margin-bottom:6px;">د. وائل شهاب</div>
+        <div style="width:28px; height:2px; background:var(--gold); margin:0 auto 10px;"></div>
+        <div style="font-size:13px; color:var(--gold-dark); font-weight:700; letter-spacing:.3px; margin-bottom:14px;">باحث شرعي</div>
+        <div style="display:flex; align-items:center; justify-content:center; gap:5px; font-size:14px; color:var(--teal-dark); font-weight:700;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 19l1.4-4.8L17.6 3 21 6.4 9.8 17.6 5 19z"></path></svg>
+          ٤٦ مقالاً
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== FATWAS + POLL ===== -->
+  <div style="background:var(--paper-warm); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+   <div class="wrap" style="padding:46px 40px;">
+    <div style="display:grid; grid-template-columns:2fr 1fr; gap:40px;">
+
+      <div>
+        <div class="sec-head" style="margin-bottom:24px;">
+          <h2>فتاوى</h2>
+          <a href="#" class="more-link">جميع الفتاوى
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"></path></svg>
+          </a>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:14px;">
+
+          <div style="background:#fff; border:1px solid var(--line); border-right:4px solid var(--teal); border-radius:12px; padding:22px 26px 22px 24px; display:flex; gap:18px; box-shadow:var(--shadow);">
+            <span class="num-badge" style="width:46px; height:46px; font-size:21px; color:var(--teal-dark); background:var(--teal-tint);">؟</span>
+            <div>
+              <div class="card-title" style="font-size:17px; margin-bottom:6px;">حكم الجمع بين الصلاتين في السفر الطويل جوًا</div>
+              <p style="font-size:14.5px; color:var(--ink-soft); line-height:1.7; margin:0;">يجوز للمسافر سفرًا تنطبق عليه أحكام السفر الشرعي أن يجمع بين الصلاتين جمع تقديم أو تأخير، تيسيرًا ورفعًا للحرج...</p>
+            </div>
+          </div>
+
+          <div style="background:#fff; border:1px solid var(--line); border-right:4px solid var(--teal); border-radius:12px; padding:22px 26px 22px 24px; display:flex; gap:18px; box-shadow:var(--shadow);">
+            <span class="num-badge" style="width:46px; height:46px; font-size:21px; color:var(--teal-dark); background:var(--teal-tint);">؟</span>
+            <div>
+              <div class="card-title" style="font-size:17px; margin-bottom:6px;">زوجتي تشتكي من رحمة الوالدين.. هل عليّ إثم في ذلك؟</div>
+              <p style="font-size:14.5px; color:var(--ink-soft); line-height:1.7; margin:0;">الأصل في العلاقة الزوجية المودة والرحمة، وعلى الزوج أن يوازن بين حق والديه وحق زوجته دون إفراط أو تفريط...</p>
+            </div>
+          </div>
+
+          <div style="background:#fff; border:1px solid var(--line); border-right:4px solid var(--teal); border-radius:12px; padding:22px 26px 22px 24px; display:flex; gap:18px; box-shadow:var(--shadow);">
+            <span class="num-badge" style="width:46px; height:46px; font-size:21px; color:var(--teal-dark); background:var(--teal-tint);">؟</span>
+            <div>
+              <div class="card-title" style="font-size:17px; margin-bottom:6px;">ما حكم استخدام أدوات الذكاء الاصطناعي في كتابة الأبحاث الشرعية؟</div>
+              <p style="font-size:14.5px; color:var(--ink-soft); line-height:1.7; margin:0;">يجوز الاستعانة بها كأداة مساعدة في جمع المادة العلمية، بشرط مراجعة المحتوى والتحقق من صحته من مصادره الأصلية...</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div>
+        <div style="position:relative; background:#fff; border:1px solid var(--line); border-top:4px solid var(--gold); border-radius:14px; padding:28px; margin-bottom:24px; box-shadow:var(--shadow); overflow:hidden;">
+          <svg class="star-motif" viewBox="0 0 100 100" style="width:120px; height:120px; top:-24px; left:-24px; color:var(--gold);"><polygon points="50,2 57.7,31.5 83.9,16.1 68.5,42.3 98,50 68.5,57.7 83.9,83.9 57.7,68.5 50,98 42.3,68.5 16.1,83.9 31.5,57.7 2,50 31.5,42.3 16.1,16.1 42.3,31.5" fill="none" stroke="currentColor" stroke-width="1.5"></polygon></svg>
+          <h3 style="font-size:19px; font-weight:800; margin-bottom:18px; position:relative;">استطلاع رأي</h3>
+          <p style="font-size:14.5px; color:var(--ink-soft); margin-bottom:16px; position:relative;">ما تقييمك للتصميم الجديد للموقع؟</p>
+          <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:18px; position:relative;">
+            <label style="display:flex; align-items:center; gap:10px; font-size:14.5px; padding:10px 14px; border:1px solid var(--teal); background:var(--teal-tint); border-radius:6px; font-weight:700;">
+              <span style="width:16px; height:16px; border-radius:50%; border:5px solid var(--teal); flex-shrink:0;"></span> ممتاز
+            </label>
+            <label style="display:flex; align-items:center; gap:10px; font-size:14.5px; padding:10px 14px; border:1px solid var(--line); border-radius:6px;">
+              <span style="width:16px; height:16px; border-radius:50%; border:2px solid var(--line); flex-shrink:0;"></span> جيد جدًا
+            </label>
+            <label style="display:flex; align-items:center; gap:10px; font-size:14.5px; padding:10px 14px; border:1px solid var(--line); border-radius:6px;">
+              <span style="width:16px; height:16px; border-radius:50%; border:2px solid var(--line); flex-shrink:0;"></span> جيد
+            </label>
+          </div>
+          <button class="btn-gold" style="width:100%; border:none; position:relative;">تصويت</button>
+        </div>
+      </div>
+
+    </div>
+   </div>
+  </div>
+
+  <!-- ===== DIALOGUES & INVESTIGATIONS ===== -->
+  <div class="wrap" style="padding:46px 40px 40px;">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:36px;">
+
+      <div>
+        <div class="sec-head">
+          <h2>حوارات</h2>
+          <a href="#" class="more-link">المزيد
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"></path></svg>
+          </a>
+        </div>
+        <a href="#" class="photo photo--gold" style="position:relative; display:block; height:230px; border-radius:14px; background-image:url('dialogue-portrait.jpg'); margin-bottom:18px;">
+          <div style="position:absolute; inset:0; background:linear-gradient(0deg, rgba(15,12,6,.82) 0%, transparent 65%); border-radius:14px;"></div>
+          <div style="position:absolute; bottom:0; right:0; left:0; padding:22px;">
+            <h3 style="color:#fff; font-size:18px; line-height:1.6;">كيف نربي أبناءنا على عقيدة التوحيد؟ حوار مع د. هناء جادو</h3>
+            <div class="meta" style="color:#EDE7D6; margin-top:6px;"><span>٢١ أبريل</span></div>
+          </div>
+        </a>
+        <div style="display:flex; flex-direction:column;">
+          <a href="#" style="display:flex; align-items:center; gap:14px; border-bottom:1px solid var(--line); padding:14px 0;">
+            <span class="num-badge" style="width:34px; height:34px; font-size:14px;">٠٢</span>
+            <div>
+              <h4 class="card-title" style="font-size:15.5px;">العلامة مازن المبارك.. مسيرة عقود في خدمة العربية والشريعة</h4>
+              <div class="meta"><span>٢٩ يوليو</span></div>
+            </div>
+          </a>
+          <a href="#" style="display:flex; align-items:center; gap:14px; border-bottom:1px solid var(--line); padding:14px 0;">
+            <span class="num-badge" style="width:34px; height:34px; font-size:14px;">٠٣</span>
+            <div>
+              <h4 class="card-title" style="font-size:15.5px;">حوار مع أ. ريم عاصي: الأدب رسالة قبل أن يكون فنًا</h4>
+              <div class="meta"><span>٢ سبتمبر</span></div>
+            </div>
+          </a>
+          <a href="#" style="display:flex; align-items:center; gap:14px; padding:14px 0 0;">
+            <span class="num-badge" style="width:34px; height:34px; font-size:14px;">٠٤</span>
+            <div>
+              <h4 class="card-title" style="font-size:15.5px;">د. طارق قباني: قراءة في مآلات المشهد السياسي العربي</h4>
+              <div class="meta"><span>١٧ يونيو</span></div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <div class="sec-head">
+          <h2>تحقيقات</h2>
+          <a href="#" class="more-link">المزيد
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"></path></svg>
+          </a>
+        </div>
+        <a href="#" class="photo photo--teal" style="position:relative; display:block; height:230px; border-radius:14px; background-image:url('investigation-city.jpg'); margin-bottom:18px;">
+          <div style="position:absolute; inset:0; background:linear-gradient(0deg, rgba(15,12,6,.82) 0%, transparent 65%); border-radius:14px;"></div>
+          <div style="position:absolute; bottom:0; right:0; left:0; padding:22px;">
+            <h3 style="color:#fff; font-size:18px; line-height:1.6;">فقدان لبنان الباكية.. تشكو الفقر والإهمال</h3>
+            <div class="meta" style="color:#EDE7D6; margin-top:6px;"><span>٢٥ فبراير</span></div>
+          </div>
+        </a>
+        <div style="display:flex; flex-direction:column;">
+          <a href="#" style="display:flex; align-items:center; gap:14px; border-bottom:1px solid var(--line); padding:14px 0;">
+            <span class="num-badge" style="width:34px; height:34px; font-size:14px;">٠٢</span>
+            <div>
+              <h4 class="card-title" style="font-size:15.5px;">قراءة في احتياجات طرابلس القرآنية بعد كورونا</h4>
+              <div class="meta"><span>٢٩ يناير</span></div>
+            </div>
+          </a>
+          <a href="#" style="display:flex; align-items:center; gap:14px; border-bottom:1px solid var(--line); padding:14px 0;">
+            <span class="num-badge" style="width:34px; height:34px; font-size:14px;">٠٣</span>
+            <div>
+              <h4 class="card-title" style="font-size:15.5px;">خلف الأسوار.. معاناة الأسرى في سجون الاحتلال</h4>
+              <div class="meta"><span>١٠ مارس</span></div>
+            </div>
+          </a>
+          <a href="#" style="display:flex; align-items:center; gap:14px; padding:14px 0 0;">
+            <span class="num-badge" style="width:34px; height:34px; font-size:14px;">٠٤</span>
+            <div>
+              <h4 class="card-title" style="font-size:15.5px;">أزمة المياه في الساحل السوري.. حين يتحول الشح إلى صراع</h4>
+              <div class="meta"><span>٤ أبريل</span></div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== AUDIO + TWEETS ===== -->
+  <div style="position:relative; background:linear-gradient(100deg,var(--gold-light) 0%, var(--teal-dark) 20%, var(--teal) 100%); overflow:hidden; clip-path:polygon(0 22px,100% 0,100% 100%,0 100%);">
+   <svg class="star-motif" viewBox="0 0 100 100" style="width:340px; height:340px; top:-90px; left:5%; color:#fff; opacity:.1;"><polygon points="50,2 57.7,31.5 83.9,16.1 68.5,42.3 98,50 68.5,57.7 83.9,83.9 57.7,68.5 50,98 42.3,68.5 16.1,83.9 31.5,57.7 2,50 31.5,42.3 16.1,16.1 42.3,31.5" fill="none" stroke="currentColor" stroke-width="1"></polygon></svg>
+   <div class="wrap" style="position:relative; padding:52px 40px 46px;">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:40px;">
+
+      <div>
+        <div class="sec-head on-dark">
+          <h2>إشراقات صوتية</h2>
+          <a href="#" class="more-link" style="color:#fff;">المزيد
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"></path></svg>
+          </a>
+        </div>
+        <div style="background:#fff; border:1px solid var(--line); border-radius:12px; overflow:hidden; box-shadow:var(--shadow);">
+
+          <a href="#" style="display:flex; align-items:center; gap:14px; padding:18px 20px; border-bottom:1px solid var(--line);">
+            <span style="flex-shrink:0; width:40px; height:40px; border-radius:50%; background:var(--teal); display:flex; align-items:center; justify-content:center;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M8 5.5v13l11-6.5z"></path></svg>
+            </span>
+            <span style="flex:1; font-size:15.5px; font-weight:700;">تلاوة تدبرية: سورة الكهف</span>
+            <svg width="46" height="20" viewBox="0 0 46 20" style="opacity:.5; flex-shrink:0;"><g fill="var(--teal-dark)"><rect x="0" y="6" width="3" height="8"></rect><rect x="6" y="2" width="3" height="16"></rect><rect x="12" y="8" width="3" height="4"></rect><rect x="18" y="0" width="3" height="20"></rect><rect x="24" y="5" width="3" height="10"></rect><rect x="30" y="7" width="3" height="6"></rect><rect x="36" y="3" width="3" height="14"></rect><rect x="42" y="8" width="3" height="4"></rect></g></svg>
+            <span class="meta"><span>١٨:٤٠</span></span>
+          </a>
+          <a href="#" style="display:flex; align-items:center; gap:14px; padding:18px 20px; border-bottom:1px solid var(--line);">
+            <span style="flex-shrink:0; width:40px; height:40px; border-radius:50%; background:var(--teal); display:flex; align-items:center; justify-content:center;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M8 5.5v13l11-6.5z"></path></svg>
+            </span>
+            <span style="flex:1; font-size:15.5px; font-weight:700;">خواطر إيمانية: بين اليقين والاطمئنان</span>
+            <svg width="46" height="20" viewBox="0 0 46 20" style="opacity:.5; flex-shrink:0;"><g fill="var(--teal-dark)"><rect x="0" y="4" width="3" height="12"></rect><rect x="6" y="7" width="3" height="6"></rect><rect x="12" y="1" width="3" height="18"></rect><rect x="18" y="6" width="3" height="8"></rect><rect x="24" y="8" width="3" height="4"></rect><rect x="30" y="2" width="3" height="16"></rect><rect x="36" y="6" width="3" height="8"></rect><rect x="42" y="4" width="3" height="12"></rect></g></svg>
+            <span class="meta"><span>١٢:١٥</span></span>
+          </a>
+          <a href="#" style="display:flex; align-items:center; gap:14px; padding:18px 20px;">
+            <span style="flex-shrink:0; width:40px; height:40px; border-radius:50%; background:var(--teal); display:flex; align-items:center; justify-content:center;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M8 5.5v13l11-6.5z"></path></svg>
+            </span>
+            <span style="flex:1; font-size:15.5px; font-weight:700;">درس صوتي: آداب طلب العلم</span>
+            <svg width="46" height="20" viewBox="0 0 46 20" style="opacity:.5; flex-shrink:0;"><g fill="var(--teal-dark)"><rect x="0" y="7" width="3" height="6"></rect><rect x="6" y="3" width="3" height="14"></rect><rect x="12" y="6" width="3" height="8"></rect><rect x="18" y="8" width="3" height="4"></rect><rect x="24" y="1" width="3" height="18"></rect><rect x="30" y="5" width="3" height="10"></rect><rect x="36" y="7" width="3" height="6"></rect><rect x="42" y="3" width="3" height="14"></rect></g></svg>
+            <span class="meta"><span>٢٤:٥٠</span></span>
+          </a>
+
+        </div>
+      </div>
+
+      <div>
+        <div class="sec-head on-dark">
+          <h2>تغريدات</h2>
+          <a href="#" class="more-link" style="color:#fff;">@ishrakatcom
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"></path></svg>
+          </a>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:16px;">
+
+          <div style="position:relative; background:#fff; border:1px solid var(--line); border-right:4px solid var(--gold); border-radius:12px; padding:20px 24px 20px 22px; box-shadow:var(--shadow); overflow:hidden;">
+            <span style="position:absolute; top:6px; left:16px; font-size:56px; font-family:Georgia,serif; color:var(--teal-tint); line-height:1;">”</span>
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px; position:relative;">
+              <span style="width:32px; height:32px; border-radius:50%; overflow:hidden; flex-shrink:0; background:var(--paper-warm); display:flex; align-items:center; justify-content:center;"><img src="logo.png" style="height:18px; width:auto;"></span>
+              <div>
+                <div style="font-size:14.5px; font-weight:700;">مجلة إشراقات</div>
+                <div style="font-size:13px; color:var(--ink-faint);">@ishrakatcom</div>
+              </div>
+            </div>
+            <p style="font-size:15px; line-height:1.8; margin:0 0 12px; position:relative;">عدد جديد من "في رحاب الشريعة" يناقش التوازن بين الغايات الكبرى وتفاصيل الحياة اليومية في التصور القرآني. اقرؤوه الآن على الموقع</p>
+            <div style="display:flex; align-items:center; gap:18px; color:var(--ink-faint); font-size:13.5px;">
+              <span style="display:flex; align-items:center; gap:5px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.5 5.5L2.9 12.7c-1 .4-.9 1.8.1 2.1l4.4 1.3 1.6 5c.3.9 1.5 1 2 .2l2.5-3 4.5 3.3c.8.6 1.9.1 2-.8l2.8-13.8c.2-.9-.8-1.7-1.6-1.3z"></path></svg>
+                ٤٢
+              </span>
+              <span style="display:flex; align-items:center; gap:5px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 2l4 4-4 4M3 11V9a4 4 0 0 1 4-4h14M7 22l-4-4 4-4M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
+                ٢٦
+              </span>
+            </div>
+          </div>
+
+          <div style="position:relative; background:#fff; border:1px solid var(--line); border-right:4px solid var(--gold); border-radius:12px; padding:20px 24px 20px 22px; box-shadow:var(--shadow); overflow:hidden;">
+            <span style="position:absolute; top:6px; left:16px; font-size:56px; font-family:Georgia,serif; color:var(--teal-tint); line-height:1;">”</span>
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px; position:relative;">
+              <span style="width:32px; height:32px; border-radius:50%; overflow:hidden; flex-shrink:0; background:var(--paper-warm); display:flex; align-items:center; justify-content:center;"><img src="logo.png" style="height:18px; width:auto;"></span>
+              <div>
+                <div style="font-size:14.5px; font-weight:700;">مجلة إشراقات</div>
+                <div style="font-size:13px; color:var(--ink-faint);">@ishrakatcom</div>
+              </div>
+            </div>
+            <p style="font-size:15px; line-height:1.8; margin:0 0 12px; position:relative;">صدر العدد ٢٣٥ من مجلتنا الإلكترونية.. تصفّحوه مجانًا عبر الموقع وشاركونا آراءكم حول محتواه.</p>
+            <div style="display:flex; align-items:center; gap:18px; color:var(--ink-faint); font-size:13.5px;">
+              <span style="display:flex; align-items:center; gap:5px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.5 5.5L2.9 12.7c-1 .4-.9 1.8.1 2.1l4.4 1.3 1.6 5c.3.9 1.5 1 2 .2l2.5-3 4.5 3.3c.8.6 1.9.1 2-.8l2.8-13.8c.2-.9-.8-1.7-1.6-1.3z"></path></svg>
+                ٦١
+              </span>
+              <span style="display:flex; align-items:center; gap:5px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 2l4 4-4 4M3 11V9a4 4 0 0 1 4-4h14M7 22l-4-4 4-4M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
+                ٣٣
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+   </div>
+  </div>
+
+  <!-- ===== LIFESTYLE ROW (ASYMMETRIC) ===== -->
+  <div class="wrap" style="padding:46px 40px;">
+    <div class="sec-head">
+      <h2>زينة الحياة</h2>
+      <a href="#" class="more-link">المزيد
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"></path></svg>
+      </a>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:32px; padding-top:8px;">
+
+      <div style="transform:rotate(-1.6deg);">
+        <div style="background:#fff; padding:10px 10px 0; border-radius:8px; box-shadow:var(--shadow-md);">
+          <a href="#" class="photo" style="display:block; height:270px; border-radius:4px; background-image:url('family-life.jpg');"></a>
+          <div style="padding:14px 4px 16px;">
+            <h4 class="card-title" style="font-size:15.5px; margin-bottom:8px;">أهمية التربية الإيمانية لأبنائنا</h4>
+            <div class="meta"><span>١٢ فبراير</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <a href="#" class="photo" style="display:block; height:280px; border-radius:6px 36px 6px 36px; background-image:url('couple-love.jpg'); margin-bottom:16px;"></a>
+        <h4 class="card-title" style="font-size:15.5px; margin-bottom:8px;">إعادة تجديد الحب بين الزوجين</h4>
+        <div class="meta"><span>٣ فبراير</span></div>
+      </div>
+
+      <div style="transform:rotate(1.6deg);">
+        <div style="background:#fff; padding:10px 10px 0; border-radius:8px; box-shadow:var(--shadow-md);">
+          <a href="#" class="photo" style="display:block; height:270px; border-radius:4px; background-image:url('self-care.jpg');"></a>
+          <div style="padding:14px 4px 16px;">
+            <h4 class="card-title" style="font-size:15.5px; margin-bottom:8px;">كيف أشعر بجمالي الداخلي؟</h4>
+            <div class="meta"><span>١ مارس</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== MOST SHARED + MOST COMMENTED (LEADERBOARD) ===== -->
+  <div style="background:var(--paper-warm); border-bottom:1px solid var(--line); clip-path:polygon(0 26px,100% 0,100% 100%,0 100%);">
+   <div class="wrap" style="padding:66px 40px 40px;">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:40px;">
+
+      <div>
+        <div class="sec-head">
+          <h2>الأكثر مشاركة</h2>
+          <a href="#" class="more-link">هذا الأسبوع
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"></path></svg>
+          </a>
+        </div>
+        <div style="display:flex; flex-direction:column;">
+          <a href="#" style="display:flex; align-items:center; gap:18px; padding:16px 4px; border-bottom:1px solid var(--line);">
+            <span class="num-badge" style="width:54px; height:54px; font-size:19px;">٠١</span>
+            <div style="flex:1; min-width:0;">
+              <div class="card-title" style="font-size:16px; line-height:1.5;">الإنسان كما يريده القرآن.. بين الغايات الكبرى وتفاصيل الحياة اليومية</div>
+            </div>
+            <span style="display:flex; align-items:center; gap:5px; font-size:13px; color:var(--ink-faint); flex-shrink:0;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21.5 5.5L2.7 12.9c-1 .4-1 1.9.1 2.2l4.6 1.4 1.7 5.2c.3.9 1.5 1.1 2.1.3l2.6-3.2 4.7 3.5c.8.6 1.9.1 2.1-.8l2.9-14.4c.2-1-.8-1.8-1.7-1.4zM8.7 16l-1.2-3.7 9.3-6.9-8.1 8.4z"></path></svg>
+              ٣١٢
+            </span>
+          </a>
+          <a href="#" style="display:flex; align-items:center; gap:18px; padding:16px 4px; border-bottom:1px solid var(--line);">
+            <span class="num-badge" style="width:54px; height:54px; font-size:19px;">٠٢</span>
+            <div style="flex:1; min-width:0;">
+              <div class="card-title" style="font-size:16px; line-height:1.5;">تشريح العلمانية.. قراءة نقدية في الجزء الثالث</div>
+            </div>
+            <span style="display:flex; align-items:center; gap:5px; font-size:13px; color:var(--ink-faint); flex-shrink:0;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21.5 5.5L2.7 12.9c-1 .4-1 1.9.1 2.2l4.6 1.4 1.7 5.2c.3.9 1.5 1.1 2.1.3l2.6-3.2 4.7 3.5c.8.6 1.9.1 2.1-.8l2.9-14.4c.2-1-.8-1.8-1.7-1.4zM8.7 16l-1.2-3.7 9.3-6.9-8.1 8.4z"></path></svg>
+              ٢٤٥
+            </span>
+          </a>
+          <a href="#" style="display:flex; align-items:center; gap:18px; padding:16px 4px; border-bottom:1px solid var(--line);">
+            <span class="num-badge" style="width:54px; height:54px; font-size:19px;">٠٣</span>
+            <div style="flex:1; min-width:0;">
+              <div class="card-title" style="font-size:16px; line-height:1.5;">حكم الجمع بين الصلاتين في السفر الطويل جوًا</div>
+            </div>
+            <span style="display:flex; align-items:center; gap:5px; font-size:13px; color:var(--ink-faint); flex-shrink:0;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21.5 5.5L2.7 12.9c-1 .4-1 1.9.1 2.2l4.6 1.4 1.7 5.2c.3.9 1.5 1.1 2.1.3l2.6-3.2 4.7 3.5c.8.6 1.9.1 2.1-.8l2.9-14.4c.2-1-.8-1.8-1.7-1.4zM8.7 16l-1.2-3.7 9.3-6.9-8.1 8.4z"></path></svg>
+              ١٩٨
+            </span>
+          </a>
+          <a href="#" style="display:flex; align-items:center; gap:18px; padding:16px 4px;">
+            <span class="num-badge" style="width:54px; height:54px; font-size:19px;">٠٤</span>
+            <div style="flex:1; min-width:0;">
+              <div class="card-title" style="font-size:16px; line-height:1.5;">كيف نربي أبناءنا على عقيدة التوحيد؟ حوار مع د. هناء جادو</div>
+            </div>
+            <span style="display:flex; align-items:center; gap:5px; font-size:13px; color:var(--ink-faint); flex-shrink:0;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21.5 5.5L2.7 12.9c-1 .4-1 1.9.1 2.2l4.6 1.4 1.7 5.2c.3.9 1.5 1.1 2.1.3l2.6-3.2 4.7 3.5c.8.6 1.9.1 2.1-.8l2.9-14.4c.2-1-.8-1.8-1.7-1.4zM8.7 16l-1.2-3.7 9.3-6.9-8.1 8.4z"></path></svg>
+              ١٧٦
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <div class="sec-head">
+          <h2>الأكثر تعليقًا</h2>
+          <a href="#" class="more-link">هذا الأسبوع
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"></path></svg>
+          </a>
+        </div>
+        <div style="display:flex; flex-direction:column;">
+          <a href="#" style="display:flex; align-items:center; gap:18px; padding:16px 4px; border-bottom:1px solid var(--line);">
+            <span class="num-badge" style="width:54px; height:54px; font-size:19px;">٠١</span>
+            <div style="flex:1; min-width:0;">
+              <div class="card-title" style="font-size:16px; line-height:1.5;">من غار ثور إلى أسوار القسطنطينية.. قراءة في مآلات المشروع</div>
+            </div>
+            <span style="display:flex; align-items:center; gap:5px; font-size:13px; color:var(--ink-faint); flex-shrink:0;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8A2.5 2.5 0 0 1 17.5 16H10l-4.5 4v-4H6.5A2.5 2.5 0 0 1 4 13.5z"></path></svg>
+              ١٤٨
+            </span>
+          </a>
+          <a href="#" style="display:flex; align-items:center; gap:18px; padding:16px 4px; border-bottom:1px solid var(--line);">
+            <span class="num-badge" style="width:54px; height:54px; font-size:19px;">٠٢</span>
+            <div style="flex:1; min-width:0;">
+              <div class="card-title" style="font-size:16px; line-height:1.5;">ما حكم استخدام أدوات الذكاء الاصطناعي في كتابة الأبحاث الشرعية؟</div>
+            </div>
+            <span style="display:flex; align-items:center; gap:5px; font-size:13px; color:var(--ink-faint); flex-shrink:0;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8A2.5 2.5 0 0 1 17.5 16H10l-4.5 4v-4H6.5A2.5 2.5 0 0 1 4 13.5z"></path></svg>
+              ١٠٢
+            </span>
+          </a>
+          <a href="#" style="display:flex; align-items:center; gap:18px; padding:16px 4px; border-bottom:1px solid var(--line);">
+            <span class="num-badge" style="width:54px; height:54px; font-size:19px;">٠٣</span>
+            <div style="flex:1; min-width:0;">
+              <div class="card-title" style="font-size:16px; line-height:1.5;">فقدان لبنان الباكية.. تشكو الفقر والإهمال</div>
+            </div>
+            <span style="display:flex; align-items:center; gap:5px; font-size:13px; color:var(--ink-faint); flex-shrink:0;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8A2.5 2.5 0 0 1 17.5 16H10l-4.5 4v-4H6.5A2.5 2.5 0 0 1 4 13.5z"></path></svg>
+              ٨٩
+            </span>
+          </a>
+          <a href="#" style="display:flex; align-items:center; gap:18px; padding:16px 4px;">
+            <span class="num-badge" style="width:54px; height:54px; font-size:19px;">٠٤</span>
+            <div style="flex:1; min-width:0;">
+              <div class="card-title" style="font-size:16px; line-height:1.5;">العلامة مازن المبارك.. مسيرة عقود في خدمة العربية والشريعة</div>
+            </div>
+            <span style="display:flex; align-items:center; gap:5px; font-size:13px; color:var(--ink-faint); flex-shrink:0;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8A2.5 2.5 0 0 1 17.5 16H10l-4.5 4v-4H6.5A2.5 2.5 0 0 1 4 13.5z"></path></svg>
+              ٧٤
+            </span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+   </div>
+  </div>
+
+  <!-- ===== CATEGORY HIGHLIGHTS ===== -->
+  <div class="wrap" style="padding:46px 40px;">
+    <div class="sec-head">
+      <h2>أقسام مختارة</h2>
+      <a href="#" class="more-link">جميع الأقسام
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"></path></svg>
+      </a>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:22px;">
+
+      <a href="#" class="photo" style="position:relative; display:block; height:230px; border-radius:14px; background-image:url('category-feature.jpg');">
+        <div style="position:absolute; inset:0; background:linear-gradient(0deg, rgba(15,12,6,.82) 0%, transparent 62%); border-radius:14px;"></div>
+        <div style="position:absolute; bottom:0; right:0; left:0; padding:20px;">
+          <span class="kicker" style="background:var(--teal); color:#fff; margin-bottom:10px; font-size:11px; padding:5px 11px;">زينة الحياة</span>
+          <h4 style="color:#fff; font-size:15px; line-height:1.5;">لمسات إيمانية في تفاصيل حياتنا اليومية</h4>
+        </div>
+      </a>
+
+      <a href="#" class="photo" style="position:relative; display:block; height:230px; border-radius:14px; background-image:url('category-family.jpg');">
+        <div style="position:absolute; inset:0; background:linear-gradient(0deg, rgba(15,12,6,.82) 0%, transparent 62%); border-radius:14px;"></div>
+        <div style="position:absolute; bottom:0; right:0; left:0; padding:20px;">
+          <span class="kicker" style="background:var(--gold); color:#fff; margin-bottom:10px; font-size:11px; padding:5px 11px;">ليسكن إليها</span>
+          <h4 style="color:#fff; font-size:15px; line-height:1.5;">قضايا الأسرة والعلاقة الزوجية</h4>
+        </div>
+      </a>
+
+      <a href="#" class="photo" style="position:relative; display:block; height:230px; border-radius:14px; background-image:url('category-youth.jpg');">
+        <div style="position:absolute; inset:0; background:linear-gradient(0deg, rgba(15,12,6,.82) 0%, transparent 62%); border-radius:14px;"></div>
+        <div style="position:absolute; bottom:0; right:0; left:0; padding:20px;">
+          <span class="kicker" style="background:var(--teal); color:#fff; margin-bottom:10px; font-size:11px; padding:5px 11px;">شباب بنات</span>
+          <h4 style="color:#fff; font-size:15px; line-height:1.5;">محتوى موجّه لفتيات هذا الجيل</h4>
+        </div>
+      </a>
+
+      <a href="#" class="photo" style="position:relative; display:block; height:230px; border-radius:14px; background-image:url('category-biography.jpg');">
+        <div style="position:absolute; inset:0; background:linear-gradient(0deg, rgba(15,12,6,.82) 0%, transparent 62%); border-radius:14px;"></div>
+        <div style="position:absolute; bottom:0; right:0; left:0; padding:20px;">
+          <span class="kicker" style="background:var(--gold); color:#fff; margin-bottom:10px; font-size:11px; padding:5px 11px;">تراجم وسِيَر</span>
+          <h4 style="color:#fff; font-size:15px; line-height:1.5;">سِيَر أعلام الأمة وعلمائها</h4>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- ===== NEWSLETTER CTA ===== -->
+  <div style="position:relative; background:linear-gradient(120deg,var(--gold-dark),var(--gold) 65%,var(--teal-dark)); overflow:hidden; clip-path:polygon(0 22px,100% 0,100% 100%,0 100%);">
+    <svg class="star-motif" viewBox="0 0 100 100" style="width:340px; height:340px; top:-90px; left:5%; color:#fff; opacity:.1;"><polygon points="50,2 57.7,31.5 83.9,16.1 68.5,42.3 98,50 68.5,57.7 83.9,83.9 57.7,68.5 50,98 42.3,68.5 16.1,83.9 31.5,57.7 2,50 31.5,42.3 16.1,16.1 42.3,31.5" fill="none" stroke="currentColor" stroke-width="1"></polygon></svg>
+    <div class="wrap" style="position:relative; padding:40px 40px 36px; display:flex; align-items:center; justify-content:space-between; gap:24px;">
+      <div>
+        <h3 style="color:#fff; font-size:23px; font-weight:800; margin-bottom:6px;">لا تفوّت جديد إشراقات</h3>
+        <p style="color:#FBF3DE; font-size:15px; margin:0;">اشترك في نشرتنا البريدية واستقبل أبرز المقالات والفتاوى أسبوعيًا</p>
+      </div>
+      <div style="display:flex; gap:10px; flex-shrink:0;">
+        <input type="email" placeholder="بريدك الإلكتروني" style="width:280px; padding:14px 18px; border-radius:7px; border:none; font-family:'Tajawal',sans-serif; font-size:15px;">
+        <button style="background:var(--teal-dark); color:#fff; border:none; padding:14px 28px; border-radius:7px; font-family:'Cairo',system-ui,sans-serif; font-weight:700; font-size:15px; white-space:nowrap; box-shadow:0 10px 24px -8px rgba(11,107,100,.5);">اشتراك</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <div style="background:var(--ink); position:relative; overflow:hidden;">
+   <svg class="star-motif" viewBox="0 0 100 100" style="width:300px; height:300px; bottom:-90px; left:-60px; color:var(--gold-light);"><polygon points="50,2 57.7,31.5 83.9,16.1 68.5,42.3 98,50 68.5,57.7 83.9,83.9 57.7,68.5 50,98 42.3,68.5 16.1,83.9 31.5,57.7 2,50 31.5,42.3 16.1,16.1 42.3,31.5" fill="none" stroke="currentColor" stroke-width="1.5"></polygon></svg>
+   <div class="wrap" style="padding:40px 40px 0; position:relative;">
+    <div style="display:grid; grid-template-columns:1.3fr 1fr 1fr 1fr; gap:40px; padding-bottom:40px; border-bottom:1px solid rgba(255,255,255,.12);">
+
+      <div>
+        <img src="logo.png" alt="إشراقات" style="height:52px; width:auto; margin-bottom:16px; filter:brightness(0) invert(1) sepia(1) hue-rotate(150deg) saturate(0);">
+        <p style="color:#B9B29A; font-size:14.5px; line-height:1.9;">مجلة المسلم المثقف.. منصة معرفية تُعنى بقضايا الفكر والشريعة والمجتمع، وتقدم محتوى رصينًا يخاطب العقل والوجدان.</p>
+        <div style="display:flex; gap:10px; margin-top:18px;">
+          <a href="#" style="width:34px; height:34px; border-radius:50%; background:rgba(255,255,255,.08); display:flex; align-items:center; justify-content:center;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="#EDE7D6"><path d="M13.5 21v-8.2h2.7l.4-3.3h-3.1V7.4c0-.95.26-1.6 1.62-1.6h1.73V2.86C15.9 2.75 14.87 2.7 13.66 2.7c-2.53 0-4.26 1.55-4.26 4.4v2.4H6.7v3.3h2.7V21h4.1z"></path></svg>
+          </a>
+          <a href="#" style="width:34px; height:34px; border-radius:50%; background:rgba(255,255,255,.08); display:flex; align-items:center; justify-content:center;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#EDE7D6" stroke-width="1.8"><path d="M4 4l7.5 8.6L4.4 20H7l6-6.7 4.6 6.7H21l-8-9.1L20 4h-2.6l-5.4 6-4.2-6H4z"></path></svg>
+          </a>
+          <a href="#" style="width:34px; height:34px; border-radius:50%; background:rgba(255,255,255,.08); display:flex; align-items:center; justify-content:center;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#EDE7D6" stroke-width="1.8"><path d="M21.5 5.5L2.7 12.9c-1 .4-1 1.9.1 2.2l4.6 1.4 1.7 5.2c.3.9 1.5 1.1 2.1.3l2.6-3.2 4.7 3.5c.8.6 1.9.1 2.1-.8l2.9-14.4c.2-1-.8-1.8-1.7-1.4zM8.7 16l-1.2-3.7 9.3-6.9-8.1 8.4z"></path></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h4 style="color:#fff; font-size:16px; font-weight:800; margin-bottom:18px;">روابط سريعة</h4>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <a href="#" style="color:#B9B29A; font-size:14.5px;">من نحن</a>
+          <a href="#" style="color:#B9B29A; font-size:14.5px;">فريق التحرير</a>
+          <a href="#" style="color:#B9B29A; font-size:14.5px;">سياسة النشر</a>
+          <a href="#" style="color:#B9B29A; font-size:14.5px;">اتصل بنا</a>
+        </div>
+      </div>
+
+      <div>
+        <h4 style="color:#fff; font-size:16px; font-weight:800; margin-bottom:18px;">الأقسام</h4>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <a href="#" style="color:#B9B29A; font-size:14.5px;">في رحاب الشريعة</a>
+          <a href="#" style="color:#B9B29A; font-size:14.5px;">فتاوى</a>
+          <a href="#" style="color:#B9B29A; font-size:14.5px;">حوارات</a>
+          <a href="#" style="color:#B9B29A; font-size:14.5px;">تحقيقات</a>
+        </div>
+      </div>
+
+      <div>
+        <h4 style="color:#fff; font-size:16px; font-weight:800; margin-bottom:18px;">تواصل معنا</h4>
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--gold-light)" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg>
+          <span style="color:#B9B29A; font-size:14.5px;">info@ishrakat.com</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding:22px 0; text-align:center; color:#8A836A; font-size:14px;">
+      © 2026 جميع الحقوق محفوظة لمجلة إشراقات
+    </div>
+   </div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>
