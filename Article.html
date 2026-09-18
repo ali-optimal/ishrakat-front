@@ -315,10 +315,15 @@
       display: flex !important;
     }
     .site-header .wrap {
-      padding: 12px 24px !important;
+      height: auto !important;
+      min-height: 88px !important;
+      padding: 10px 24px !important;
     }
-    .brand-logo {
-      height: 60px !important;
+    .brand-logo,
+    .site-header .brand-logo {
+      height: 80px !important;
+      width: auto !important;
+      animation: none !important;
     }
     .article-layout-grid {
       grid-template-columns: 1fr !important;
@@ -344,10 +349,15 @@
       top: 0;
     }
     .site-header .wrap {
-      padding: 10px 16px !important;
+      height: auto !important;
+      min-height: 80px !important;
+      padding: 8px 16px !important;
     }
-    .brand-logo {
-      height: 50px !important;
+    .brand-logo,
+    .site-header .brand-logo {
+      height: 72px !important;
+      width: auto !important;
+      animation: none !important;
     }
     
     /* Top bar */
@@ -418,8 +428,15 @@
 
   /* Small Mobile Phones (<= 480px) */
   @media (max-width: 480px) {
-    .brand-logo {
-      height: 42px !important;
+    .site-header .wrap {
+      min-height: 74px !important;
+      padding: 6px 14px !important;
+    }
+    .brand-logo,
+    .site-header .brand-logo {
+      height: 64px !important;
+      width: auto !important;
+      animation: none !important;
     }
     .footer-grid {
       grid-template-columns: 1fr !important;
